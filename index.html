@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贾越绰 - 传奇简历</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* 动态背景粒子 */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: move 25s infinite;
+            border-radius: 50%;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* 主容器 */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* 头部区域 */
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 头像容器 */
+        .avatar-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradient 3s ease infinite, pulse 2s ease-in-out infinite;
+            padding: 5px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes gradient {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .header .title {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .header .motto {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 内容区域 */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out backwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+
+        .section:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title .icon {
+            font-size: 2.5rem;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* 技能标签 */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 经历时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            box-shadow: 0 0 20px rgba(240, 147, 251, 0.5);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #f093fb;
+        }
+
+        .timeline-item .time {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* 项目卡片 */
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #4facfe;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            color: rgba(255, 255, 255, 0.6);
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header .title {
+                font-size: 1.5rem;
+            }
+
+            .header .motto {
+                font-size: 1.2rem;
+            }
+
+            .avatar-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <div class="container">
+        <!-- 头部区域 -->
+        <div class="header">
+            <div class="avatar-container">
+                <div class="avatar">
+                    <!-- 这里可以替换为您的照片 -->
+                    <img src="avatar.jpg" alt="贾敬峰" onerror="this.style.display='none'; this.parentElement.innerHTML='👨‍💼';">
+                </div>
+            </div>
+            <h1>贾敬峰</h1>
+            <div class="title">大盘鸡创始股东</div>
+            <div class="motto">"就是牛逼"</div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content">
+            <!-- 核心技能 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🎯</span>
+                    <span>核心技能</span>
+                </div>
+                <div class="skills">
+                    <div class="skill-tag">自动化点赞专家</div>
+                    <div class="skill-tag">大盘鸡品鉴师</div>
+                    <div class="skill-tag">创新思维</div>
+                    <div class="skill-tag">团队领导</div>
+                    <div class="skill-tag">财务管理</div>
+                    <div class="skill-tag">项目运营</div>
+                </div>
+            </div>
+
+            <!-- 工作经历 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">💼</span>
+                    <span>工作经历</span>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>数字创新科技公司</h3>
+                        <div class="time">经理 | 负责财务</div>
+                        <p>全面负责公司财务管理工作，以创新思维推动公司数字化转型，带领团队实现财务流程自动化，提升效率300%。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目经验 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🚀</span>
+                    <span>项目经验</span>
+                </div>
+                <div class="project-card">
+                    <h3>东家打赏项目</h3>
+                    <p>作为核心成员参与项目开发与运营，通过创新的打赏机制设计，实现用户活跃度提升200%，为公司创造显著收益。</p>
+                </div>
+                <div class="project-card">
+                    <h3>DTT项目</h3>
+                    <p>主导DTT项目从0到1的全过程，运用前沿技术打造数字化解决方案，项目获得行业高度认可，成为公司标杆案例。</p>
+                </div>
+            </div>
+
+            <!-- 教育背景 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🎓</span>
+                    <span>教育背景</span>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>清华大学</h3>
+                        <div class="time">顶尖学府</div>
+                        <p>清华大学毕业，在校期间表现优异，多次获得奖学金，参与多个创新项目，为日后的职业发展奠定坚实基础。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <p>© 2026 贾越绰 | 传奇人生，从大盘鸡开始 🍗</p>
+        </footer>
+    </div>
+
+    <script>
+        // 创建动态背景粒子
+        function createBackgroundAnimation() {
+            const bgAnimation = document.getElementById('bgAnimation');
+            const spanCount = 15;
+
+            for (let i = 0; i < spanCount; i++) {
+                const span = document.createElement('span');
+                span.style.left = Math.random() * 100 + '%';
+                span.style.width = (Math.random() * 30 + 10) + 'px';
+                span.style.height = span.style.width;
+                span.style.animationDelay = Math.random() * 25 + 's';
+                span.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                bgAnimation.appendChild(span);
+            }
+        }
+
+        // 初始化背景动画
+        createBackgroundAnimation();
+
+        // 平滑滚动
+        document.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
